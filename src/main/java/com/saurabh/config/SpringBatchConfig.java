@@ -70,12 +70,23 @@ public class SpringBatchConfig {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("csv-step").<Customer, Customer>chunk(10).reader(reader()).processor(processor()).writer(writer()).taskExecutor(taskExecutor()).build();
+        return stepBuilderFactory
+                .get("CSV STEP 1")
+                .<Customer, Customer>chunk(10)
+                .reader(reader())
+                .processor(processor())
+                .writer(writer())
+                .taskExecutor(taskExecutor())
+                .build();
     }
 
     @Bean
     public Job runJob() {
-        return jobBuilderFactory.get("importCustomers").flow(step1()).end().build();
+        return jobBuilderFactory
+                .get("IMPORT CUSTOMER")
+                .flow(step1())
+                .end()
+                .build();
 
     }
 

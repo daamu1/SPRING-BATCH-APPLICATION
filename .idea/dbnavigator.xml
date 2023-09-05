@@ -26,9 +26,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="f66d64f6-2606-461b-b922-ebbd1e86ee08" object-ref="schemas/spring_batch/tables/customers_info" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="f66d64f6-2606-461b-b922-ebbd1e86ee08" dataset="spring_batch.customers_info" active-filter-id="EMPTY_FILTER">
