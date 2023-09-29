@@ -5,7 +5,8 @@ import com.saurabh.listener.FirstJobListener;
 import com.saurabh.listener.FirstStepListener;
 import com.saurabh.repository.CustomerRepository;
 import com.saurabh.service.SecondTasklet;
-import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
@@ -33,9 +34,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @Configuration
 @EnableBatchProcessing
-//@AllArgsConstructor
+@Slf4j
 public class SpringBatchConfig {
-
     private final JobBuilderFactory jobBuilderFactory;
 
     private final StepBuilderFactory stepBuilderFactory;
@@ -90,9 +90,9 @@ public class SpringBatchConfig {
         return new Tasklet() {
 
             @Override
-            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                System.out.println("This is first tasklet step");
-                System.out.println("SEC = " + chunkContext.getStepContext().getStepExecutionContext());
+            public RepeatStatus execute(@NotNull StepContribution contribution, @NotNull ChunkContext chunkContext) throws Exception {
+                log.info("This is first tasklet step");
+               log.info("SEC = " + chunkContext.getStepContext().getStepExecutionContext());
                 return RepeatStatus.FINISHED;
             }
         };

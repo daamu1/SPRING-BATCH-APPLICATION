@@ -15,19 +15,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/jobs")
 public class JobController {
 
+    private final JobLauncher jobLauncher;
+    private final Job job;
+    private final JobService jobService;
     @Autowired
-    private JobLauncher jobLauncher;
-    @Autowired
-    private Job job;
-    @Autowired
-    private JobService jobService;
+    public JobController(JobLauncher jobLauncher, Job job, JobService jobService) {
+        this.jobLauncher = jobLauncher;
+        this.job = job;
+        this.jobService = jobService;
+    }
 
     /*
-    for using  this api we need job name for Running this paticuler Job
+    for using  this api we need job name for Running this particulate Job
      for example : 'First Job' or 'IMPORT CUSTOMER'"
      */
     @GetMapping("/start/{jobName}")
-    public String startJob(@PathVariable String jobName) throws Exception {
+    public String startJob(@PathVariable String jobName) {
         jobService.startJob(jobName);
         return "Job Started...";
     }
